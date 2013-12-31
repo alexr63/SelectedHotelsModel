@@ -17,11 +17,13 @@ namespace SelectedHotelsModel
         public HotelType()
         {
             this.Hotels = new HashSet<Hotel>();
+            this.HotelLocations = new HashSet<HotelLocation>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<Hotel> Hotels { get; set; }
+        public virtual ICollection<HotelLocation> HotelLocations { get; set; }
     }
 }

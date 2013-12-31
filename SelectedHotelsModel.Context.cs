@@ -33,5 +33,6 @@ namespace SelectedHotelsModel
         public virtual DbSet<ProductSpec> ProductSpecs { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<HotelLocation> HotelLocations { get; set; }
     }
 }

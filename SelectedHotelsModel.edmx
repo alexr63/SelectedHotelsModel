@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SelectedHotelsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SelectedHotelsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cowrie_Boats">
           <Key>
             <PropertyRef Name="Id" />
@@ -86,6 +86,15 @@
           <Property Name="Brand" Type="nvarchar" MaxLength="50" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cowrie_HotelLocations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="HotelTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cowrie_Hotels">
           <Key>
@@ -257,6 +266,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cowrie_HotelLocations_Cowrie_Hotels">
+          <End Role="Cowrie_Hotels" Type="Self.Cowrie_Hotels" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_HotelLocations" Type="Self.Cowrie_HotelLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Hotels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HotelLocations">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_HotelLocations_Cowrie_HotelTypes">
+          <End Role="Cowrie_HotelTypes" Type="Self.Cowrie_HotelTypes" Multiplicity="1" />
+          <End Role="Cowrie_HotelLocations" Type="Self.Cowrie_HotelLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_HotelTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HotelLocations">
+              <PropertyRef Name="HotelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_HotelLocations_Cowrie_Locations">
+          <End Role="Cowrie_Locations" Type="Self.Cowrie_Locations" Multiplicity="1" />
+          <End Role="Cowrie_HotelLocations" Type="Self.Cowrie_HotelLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HotelLocations">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cowrie_Hotels_Cowrie_HotelTypes">
           <End Role="Cowrie_HotelTypes" Type="Self.Cowrie_HotelTypes" Multiplicity="1" />
           <End Role="Cowrie_Hotels" Type="Self.Cowrie_Hotels" Multiplicity="*" />
@@ -355,6 +402,7 @@
           <EntitySet Name="Cowrie_Clothes" EntityType="Self.Cowrie_Clothes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Feeds" EntityType="Self.Cowrie_Feeds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_HomeAndGardens" EntityType="Self.Cowrie_HomeAndGardens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_HotelLocations" EntityType="Self.Cowrie_HotelLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Hotels" EntityType="Self.Cowrie_Hotels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_HotelTypes" EntityType="Self.Cowrie_HotelTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Locations" EntityType="Self.Cowrie_Locations" Schema="dbo" store:Type="Tables" />
@@ -390,6 +438,18 @@
             <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
             <End Role="Cowrie_HomeAndGardens" EntitySet="Cowrie_HomeAndGardens" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_HotelLocations_Cowrie_Hotels" Association="Self.FK_Cowrie_HotelLocations_Cowrie_Hotels">
+            <End Role="Cowrie_Hotels" EntitySet="Cowrie_Hotels" />
+            <End Role="Cowrie_HotelLocations" EntitySet="Cowrie_HotelLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_HotelLocations_Cowrie_HotelTypes" Association="Self.FK_Cowrie_HotelLocations_Cowrie_HotelTypes">
+            <End Role="Cowrie_HotelTypes" EntitySet="Cowrie_HotelTypes" />
+            <End Role="Cowrie_HotelLocations" EntitySet="Cowrie_HotelLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_HotelLocations_Cowrie_Locations" Association="Self.FK_Cowrie_HotelLocations_Cowrie_Locations">
+            <End Role="Cowrie_Locations" EntitySet="Cowrie_Locations" />
+            <End Role="Cowrie_HotelLocations" EntitySet="Cowrie_HotelLocations" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cowrie_Hotels_Cowrie_HotelTypes" Association="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes">
             <End Role="Cowrie_HotelTypes" EntitySet="Cowrie_HotelTypes" />
             <End Role="Cowrie_Hotels" EntitySet="Cowrie_Hotels" />
@@ -419,8 +479,7 @@
             <End Role="Cowrie_ProductSpecs" EntitySet="Cowrie_ProductSpecs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SelectedHotelsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -498,6 +557,7 @@
           <Property Name="HotelTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HotelType" Relationship="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes" FromRole="Hotels" ToRole="HotelType" />
           <NavigationProperty Name="Location" Relationship="Self.FK_Cowrie_Hotels_Cowrie_Locations" FromRole="Hotels" ToRole="Location" />
+          <NavigationProperty Name="HotelLocations" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Hotels" FromRole="Hotel" ToRole="Cowrie_HotelLocations" />
         </EntityType>
         <EntityType Name="HotelType">
           <Key>
@@ -506,6 +566,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Hotels" Relationship="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes" FromRole="HotelType" ToRole="Hotels" />
+          <NavigationProperty Name="HotelLocations" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_HotelTypes" FromRole="HotelType" ToRole="Cowrie_HotelLocations" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -518,6 +579,7 @@
           <NavigationProperty Name="Hotels" Relationship="Self.FK_Cowrie_Hotels_Cowrie_Locations" FromRole="Location" ToRole="Hotels" />
           <NavigationProperty Name="SubLocations" Relationship="Self.FK_Cowrie_Locations_Cowrie_Locations" FromRole="Cowrie_Locations" ToRole="Cowrie_Locations1" />
           <NavigationProperty Name="ParentLocation" Relationship="Self.FK_Cowrie_Locations_Cowrie_Locations" FromRole="Cowrie_Locations1" ToRole="Cowrie_Locations" />
+          <NavigationProperty Name="HotelLocations" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Locations" FromRole="Location" ToRole="Cowrie_HotelLocations" />
         </EntityType>
         <EntityType Name="ProductImage">
           <Key>
@@ -701,7 +763,70 @@
             <End Role="Cowrie_Products" EntitySet="Products" />
           </AssociationSet>
           <EntitySet Name="Products" EntityType="SelectedHotelsModel.Product" />
+          <EntitySet Name="HotelLocations" EntityType="SelectedHotelsModel.HotelLocation" />
+          <AssociationSet Name="FK_Cowrie_HotelLocations_Cowrie_Hotels" Association="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Hotels">
+            <End Role="Hotel" EntitySet="Products" />
+            <End Role="Cowrie_HotelLocations" EntitySet="HotelLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_HotelLocations_Cowrie_HotelTypes" Association="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_HotelTypes">
+            <End Role="HotelType" EntitySet="HotelTypes" />
+            <End Role="Cowrie_HotelLocations" EntitySet="HotelLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_HotelLocations_Cowrie_Locations" Association="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Cowrie_HotelLocations" EntitySet="HotelLocations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="HotelLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="HotelTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Hotels" FromRole="Cowrie_HotelLocations" ToRole="Hotel" />
+          <NavigationProperty Name="HotelType" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_HotelTypes" FromRole="Cowrie_HotelLocations" ToRole="HotelType" />
+          <NavigationProperty Name="Location" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Locations" FromRole="Cowrie_HotelLocations" ToRole="Location" />
+        </EntityType>
+        <Association Name="FK_Cowrie_HotelLocations_Cowrie_Hotels">
+          <End Type="SelectedHotelsModel.Hotel" Role="Hotel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SelectedHotelsModel.HotelLocation" Role="Cowrie_HotelLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HotelLocations">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_HotelLocations_Cowrie_HotelTypes">
+          <End Type="SelectedHotelsModel.HotelType" Role="HotelType" Multiplicity="1" />
+          <End Type="SelectedHotelsModel.HotelLocation" Role="Cowrie_HotelLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HotelLocations">
+              <PropertyRef Name="HotelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_HotelLocations_Cowrie_Locations">
+          <End Type="SelectedHotelsModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="SelectedHotelsModel.HotelLocation" Role="Cowrie_HotelLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HotelLocations">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -871,6 +996,16 @@
               <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="HotelLocations">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.HotelLocation">
+              <MappingFragment StoreEntitySet="Cowrie_HotelLocations">
+                <ScalarProperty Name="HotelTypeId" ColumnName="HotelTypeId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
