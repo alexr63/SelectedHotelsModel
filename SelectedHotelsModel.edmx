@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SelectedHotelsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cowrie_Boats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Thumbnail" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="Featured" Type="bit" Nullable="false" />
+          <Property Name="Manu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManuTxt" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManuAdvert" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManuLink" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentBuilder" Type="nvarchar(max)" />
+          <Property Name="DesignHistory" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Cowrie_Books">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cowrie_Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Cowrie_CategoryProducts">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cowrie_Clothes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" />
+          <Property Name="Colour" Type="nvarchar" MaxLength="50" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Style" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cowrie_Feeds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LastRun" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="PortalId" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="AdvancedCategoryRoot" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryFilter" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityFilter" Type="nvarchar" MaxLength="50" />
+          <Property Name="StepImport" Type="int" />
+          <Property Name="StepAddToCategories" Type="int" />
+          <Property Name="StepAddImages" Type="int" />
+        </EntityType>
+        <EntityType Name="Cowrie_HomeAndGardens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cowrie_Hotels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Rooms" Type="int" />
+          <Property Name="Star" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="CustomerRating" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lat" Type="float" />
+          <Property Name="Lon" Type="float" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cowrie_HotelTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cowrie_Locations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cowrie_ProductImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Cowrie_Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitCost" Type="money" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedByUser" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProductTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Cowrie_ProductSpecs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DimensionMet" Type="nvarchar" MaxLength="50" />
+          <Property Name="DimensionImp" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cowrie_ProductTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cowrie_Boats_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_Boats" Type="Self.Cowrie_Boats" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Boats">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Books_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_Books" Type="Self.Cowrie_Books" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Books">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Categories_Cowrie_Categories">
+          <End Role="Cowrie_Categories" Type="Self.Cowrie_Categories" Multiplicity="0..1" />
+          <End Role="Cowrie_Categories1" Type="Self.Cowrie_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Categories1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_CategoryProducts_Cowrie_Categories">
+          <End Role="Cowrie_Categories" Type="Self.Cowrie_Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_CategoryProducts" Type="Self.Cowrie_CategoryProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_CategoryProducts">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_CategoryProducts_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_CategoryProducts" Type="Self.Cowrie_CategoryProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_CategoryProducts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Clothes_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_Clothes" Type="Self.Cowrie_Clothes" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Clothes">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_HomeAndGardens_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_HomeAndGardens" Type="Self.Cowrie_HomeAndGardens" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_HomeAndGardens">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Hotels_Cowrie_HotelTypes">
+          <End Role="Cowrie_HotelTypes" Type="Self.Cowrie_HotelTypes" Multiplicity="1" />
+          <End Role="Cowrie_Hotels" Type="Self.Cowrie_Hotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_HotelTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Hotels">
+              <PropertyRef Name="HotelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Hotels_Cowrie_Locations">
+          <End Role="Cowrie_Locations" Type="Self.Cowrie_Locations" Multiplicity="0..1" />
+          <End Role="Cowrie_Hotels" Type="Self.Cowrie_Hotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Hotels">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Hotels_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_Hotels" Type="Self.Cowrie_Hotels" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Hotels">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Locations_Cowrie_Locations">
+          <End Role="Cowrie_Locations" Type="Self.Cowrie_Locations" Multiplicity="0..1" />
+          <End Role="Cowrie_Locations1" Type="Self.Cowrie_Locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Locations1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_ProductImages_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_ProductImages" Type="Self.Cowrie_ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_ProductImages">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Products_Cowrie_ProductTypes">
+          <End Role="Cowrie_ProductTypes" Type="Self.Cowrie_ProductTypes" Multiplicity="0..1" />
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_ProductTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Products">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_ProductSpecs_Cowrie_Products">
+          <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_ProductSpecs" Type="Self.Cowrie_ProductSpecs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_ProductSpecs">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SelectedHotelsModelStoreContainer">
+          <EntitySet Name="Cowrie_Boats" EntityType="Self.Cowrie_Boats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Books" EntityType="Self.Cowrie_Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Categories" EntityType="Self.Cowrie_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_CategoryProducts" EntityType="Self.Cowrie_CategoryProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Clothes" EntityType="Self.Cowrie_Clothes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Feeds" EntityType="Self.Cowrie_Feeds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_HomeAndGardens" EntityType="Self.Cowrie_HomeAndGardens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Hotels" EntityType="Self.Cowrie_Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_HotelTypes" EntityType="Self.Cowrie_HotelTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Locations" EntityType="Self.Cowrie_Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_ProductImages" EntityType="Self.Cowrie_ProductImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Products" EntityType="Self.Cowrie_Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_ProductSpecs" EntityType="Self.Cowrie_ProductSpecs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_ProductTypes" EntityType="Self.Cowrie_ProductTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cowrie_Boats_Cowrie_Products" Association="Self.FK_Cowrie_Boats_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_Boats" EntitySet="Cowrie_Boats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Books_Cowrie_Products" Association="Self.FK_Cowrie_Books_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_Books" EntitySet="Cowrie_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Categories_Cowrie_Categories" Association="Self.FK_Cowrie_Categories_Cowrie_Categories">
+            <End Role="Cowrie_Categories" EntitySet="Cowrie_Categories" />
+            <End Role="Cowrie_Categories1" EntitySet="Cowrie_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_CategoryProducts_Cowrie_Categories" Association="Self.FK_Cowrie_CategoryProducts_Cowrie_Categories">
+            <End Role="Cowrie_Categories" EntitySet="Cowrie_Categories" />
+            <End Role="Cowrie_CategoryProducts" EntitySet="Cowrie_CategoryProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_CategoryProducts_Cowrie_Products" Association="Self.FK_Cowrie_CategoryProducts_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_CategoryProducts" EntitySet="Cowrie_CategoryProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Clothes_Cowrie_Products" Association="Self.FK_Cowrie_Clothes_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_Clothes" EntitySet="Cowrie_Clothes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_HomeAndGardens_Cowrie_Products" Association="Self.FK_Cowrie_HomeAndGardens_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_HomeAndGardens" EntitySet="Cowrie_HomeAndGardens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Hotels_Cowrie_HotelTypes" Association="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes">
+            <End Role="Cowrie_HotelTypes" EntitySet="Cowrie_HotelTypes" />
+            <End Role="Cowrie_Hotels" EntitySet="Cowrie_Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Hotels_Cowrie_Locations" Association="Self.FK_Cowrie_Hotels_Cowrie_Locations">
+            <End Role="Cowrie_Locations" EntitySet="Cowrie_Locations" />
+            <End Role="Cowrie_Hotels" EntitySet="Cowrie_Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Hotels_Cowrie_Products" Association="Self.FK_Cowrie_Hotels_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_Hotels" EntitySet="Cowrie_Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Locations_Cowrie_Locations" Association="Self.FK_Cowrie_Locations_Cowrie_Locations">
+            <End Role="Cowrie_Locations" EntitySet="Cowrie_Locations" />
+            <End Role="Cowrie_Locations1" EntitySet="Cowrie_Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_ProductImages_Cowrie_Products" Association="Self.FK_Cowrie_ProductImages_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_ProductImages" EntitySet="Cowrie_ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Products_Cowrie_ProductTypes" Association="Self.FK_Cowrie_Products_Cowrie_ProductTypes">
+            <End Role="Cowrie_ProductTypes" EntitySet="Cowrie_ProductTypes" />
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_ProductSpecs_Cowrie_Products" Association="Self.FK_Cowrie_ProductSpecs_Cowrie_Products">
+            <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
+            <End Role="Cowrie_ProductSpecs" EntitySet="Cowrie_ProductSpecs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SelectedHotelsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Boat" BaseType="SelectedHotelsModel.Product">
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="Featured" Type="Boolean" Nullable="false" />
+          <Property Name="Manu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManuTxt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManuAdvert" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManuLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentBuilder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DesignHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Book" BaseType="SelectedHotelsModel.Product">
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.FK_Cowrie_Categories_Cowrie_Categories" FromRole="ParentCategory" ToRole="SubCategories" />
+          <NavigationProperty Name="ParentCategory" Relationship="Self.FK_Cowrie_Categories_Cowrie_Categories" FromRole="SubCategories" ToRole="ParentCategory" />
+          <NavigationProperty Name="Products" Relationship="SelectedHotelsModel.Cowrie_CategoryProducts" FromRole="Cowrie_Categories" ToRole="Cowrie_Products" />
+        </EntityType>
+        <EntityType Name="Clothe" BaseType="SelectedHotelsModel.Product">
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Feed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LastRun" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortalId" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="AdvancedCategoryRoot" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StepImport" Type="Int32" />
+          <Property Name="StepAddToCategories" Type="Int32" />
+          <Property Name="StepAddImages" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HomeAndGarden" BaseType="SelectedHotelsModel.Product">
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Hotel" BaseType="SelectedHotelsModel.Product">
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Rooms" Type="Int32" />
+          <Property Name="Star" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="CustomerRating" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Lon" Type="Double" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HotelType" Relationship="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes" FromRole="Hotels" ToRole="HotelType" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Cowrie_Hotels_Cowrie_Locations" FromRole="Hotels" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="HotelType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Hotels" Relationship="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes" FromRole="HotelType" ToRole="Hotels" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Hotels" Relationship="Self.FK_Cowrie_Hotels_Cowrie_Locations" FromRole="Location" ToRole="Hotels" />
+          <NavigationProperty Name="SubLocations" Relationship="Self.FK_Cowrie_Locations_Cowrie_Locations" FromRole="Cowrie_Locations" ToRole="Cowrie_Locations1" />
+          <NavigationProperty Name="ParentLocation" Relationship="Self.FK_Cowrie_Locations_Cowrie_Locations" FromRole="Cowrie_Locations1" ToRole="Cowrie_Locations" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Cowrie_ProductImages_Cowrie_Products" FromRole="ProductImages" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedByUser" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProductTypeId" Type="Int32" />
+          <NavigationProperty Name="ProductImages" Relationship="Self.FK_Cowrie_ProductImages_Cowrie_Products" FromRole="Product" ToRole="ProductImages" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK_Cowrie_Products_Cowrie_ProductTypes" FromRole="Products" ToRole="ProductType" />
+          <NavigationProperty Name="ProductSpecs" Relationship="Self.FK_Cowrie_ProductSpecs_Cowrie_Products" FromRole="Product" ToRole="ProductSpecs" />
+          <NavigationProperty Name="Categories" Relationship="SelectedHotelsModel.Cowrie_CategoryProducts" FromRole="Cowrie_Products" ToRole="Cowrie_Categories" />
+        </EntityType>
+        <EntityType Name="ProductSpec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DimensionMet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DimensionImp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Cowrie_ProductSpecs_Cowrie_Products" FromRole="ProductSpecs" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Cowrie_Products_Cowrie_ProductTypes" FromRole="ProductType" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Cowrie_Categories_Cowrie_Categories">
+          <End Role="ParentCategory" Type="SelectedHotelsModel.Category" Multiplicity="0..1" />
+          <End Role="SubCategories" Type="SelectedHotelsModel.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubCategories">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Hotels_Cowrie_HotelTypes">
+          <End Role="HotelType" Type="SelectedHotelsModel.HotelType" Multiplicity="1" />
+          <End Role="Hotels" Type="SelectedHotelsModel.Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hotels">
+              <PropertyRef Name="HotelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Hotels_Cowrie_Locations">
+          <End Role="Location" Type="SelectedHotelsModel.Location" Multiplicity="0..1" />
+          <End Role="Hotels" Type="SelectedHotelsModel.Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hotels">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Locations_Cowrie_Locations">
+          <End Role="Cowrie_Locations" Type="SelectedHotelsModel.Location" Multiplicity="0..1" />
+          <End Role="Cowrie_Locations1" Type="SelectedHotelsModel.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Locations1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_ProductImages_Cowrie_Products">
+          <End Role="Product" Type="SelectedHotelsModel.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductImages" Type="SelectedHotelsModel.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_Products_Cowrie_ProductTypes">
+          <End Role="ProductType" Type="SelectedHotelsModel.ProductType" Multiplicity="0..1" />
+          <End Role="Products" Type="SelectedHotelsModel.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_ProductSpecs_Cowrie_Products">
+          <End Role="Product" Type="SelectedHotelsModel.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductSpecs" Type="SelectedHotelsModel.ProductSpec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductSpecs">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cowrie_CategoryProducts">
+          <End Role="Cowrie_Categories" Type="SelectedHotelsModel.Category" Multiplicity="*" />
+          <End Role="Cowrie_Products" Type="SelectedHotelsModel.Product" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SelectedHotelsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="SelectedHotelsModel.Category" />
+          <EntitySet Name="Feeds" EntityType="SelectedHotelsModel.Feed" />
+          <EntitySet Name="HotelTypes" EntityType="SelectedHotelsModel.HotelType" />
+          <EntitySet Name="Locations" EntityType="SelectedHotelsModel.Location" />
+          <EntitySet Name="ProductImages" EntityType="SelectedHotelsModel.ProductImage" />
+          <EntitySet Name="ProductSpecs" EntityType="SelectedHotelsModel.ProductSpec" />
+          <EntitySet Name="ProductTypes" EntityType="SelectedHotelsModel.ProductType" />
+          <AssociationSet Name="FK_Cowrie_Categories_Cowrie_Categories" Association="Self.FK_Cowrie_Categories_Cowrie_Categories">
+            <End Role="ParentCategory" EntitySet="Categories" />
+            <End Role="SubCategories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Hotels_Cowrie_HotelTypes" Association="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes">
+            <End Role="HotelType" EntitySet="HotelTypes" />
+            <End Role="Hotels" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Hotels_Cowrie_Locations" Association="Self.FK_Cowrie_Hotels_Cowrie_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Hotels" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Locations_Cowrie_Locations" Association="Self.FK_Cowrie_Locations_Cowrie_Locations">
+            <End Role="Cowrie_Locations" EntitySet="Locations" />
+            <End Role="Cowrie_Locations1" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_ProductImages_Cowrie_Products" Association="Self.FK_Cowrie_ProductImages_Cowrie_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Products_Cowrie_ProductTypes" Association="Self.FK_Cowrie_Products_Cowrie_ProductTypes">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_ProductSpecs_Cowrie_Products" Association="Self.FK_Cowrie_ProductSpecs_Cowrie_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductSpecs" EntitySet="ProductSpecs" />
+          </AssociationSet>
+          <AssociationSet Name="Cowrie_CategoryProducts" Association="SelectedHotelsModel.Cowrie_CategoryProducts">
+            <End Role="Cowrie_Categories" EntitySet="Categories" />
+            <End Role="Cowrie_Products" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="SelectedHotelsModel.Product" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SelectedHotelsModelStoreContainer" CdmEntityContainer="SelectedHotelsEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.Category">
+              <MappingFragment StoreEntitySet="Cowrie_Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feeds">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.Feed">
+              <MappingFragment StoreEntitySet="Cowrie_Feeds">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="LastRun" ColumnName="LastRun" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PortalId" ColumnName="PortalId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="AdvancedCategoryRoot" ColumnName="AdvancedCategoryRoot" />
+                <ScalarProperty Name="CountryFilter" ColumnName="CountryFilter" />
+                <ScalarProperty Name="CityFilter" ColumnName="CityFilter" />
+                <ScalarProperty Name="StepImport" ColumnName="StepImport" />
+                <ScalarProperty Name="StepAddToCategories" ColumnName="StepAddToCategories" />
+                <ScalarProperty Name="StepAddImages" ColumnName="StepAddImages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelTypes">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.HotelType">
+              <MappingFragment StoreEntitySet="Cowrie_HotelTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.Location">
+              <MappingFragment StoreEntitySet="Cowrie_Locations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.ProductImage">
+              <MappingFragment StoreEntitySet="Cowrie_ProductImages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSpecs">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.ProductSpec">
+              <MappingFragment StoreEntitySet="Cowrie_ProductSpecs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DimensionMet" ColumnName="DimensionMet" />
+                <ScalarProperty Name="DimensionImp" ColumnName="DimensionImp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.ProductType">
+              <MappingFragment StoreEntitySet="Cowrie_ProductTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Product)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="Cowrie_Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser" ColumnName="CreatedByUser" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Book)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="Cowrie_Books">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Clothe)">
+              <MappingFragment StoreEntitySet="Cowrie_Clothes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.HomeAndGarden)">
+              <MappingFragment StoreEntitySet="Cowrie_HomeAndGardens">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Hotel)">
+              <MappingFragment StoreEntitySet="Cowrie_Hotels">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelTypeId" ColumnName="HotelTypeId" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CustomerRating" ColumnName="CustomerRating" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Boat)">
+              <MappingFragment StoreEntitySet="Cowrie_Boats">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DesignHistory" ColumnName="DesignHistory" />
+                <ScalarProperty Name="CurrentBuilder" ColumnName="CurrentBuilder" />
+                <ScalarProperty Name="ManuLink" ColumnName="ManuLink" />
+                <ScalarProperty Name="ManuAdvert" ColumnName="ManuAdvert" />
+                <ScalarProperty Name="ManuTxt" ColumnName="ManuTxt" />
+                <ScalarProperty Name="Manu" ColumnName="Manu" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Cowrie_CategoryProducts" TypeName="SelectedHotelsModel.Cowrie_CategoryProducts" StoreEntitySet="Cowrie_CategoryProducts">
+            <EndProperty Name="Cowrie_Categories">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+            <EndProperty Name="Cowrie_Products">
+              <ScalarProperty Name="Id" ColumnName="ProductId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
