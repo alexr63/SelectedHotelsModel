@@ -32,6 +32,7 @@ namespace SelectedHotelsModel
         public bool IsDeleted { get; set; }
         public string Image { get; set; }
         public Nullable<int> ProductTypeId { get; set; }
+        public string ExtraDescription { get; set; }
     
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual ProductType ProductType { get; set; }

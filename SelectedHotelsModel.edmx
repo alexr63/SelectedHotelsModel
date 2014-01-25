@@ -152,6 +152,7 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="ProductTypeId" Type="int" />
+          <Property Name="ExtraDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Cowrie_ProductSpecs">
           <Key>
@@ -610,6 +611,7 @@
           <NavigationProperty Name="ProductType" Relationship="Self.FK_Cowrie_Products_Cowrie_ProductTypes" FromRole="Products" ToRole="ProductType" />
           <NavigationProperty Name="ProductSpecs" Relationship="Self.FK_Cowrie_ProductSpecs_Cowrie_Products" FromRole="Product" ToRole="ProductSpecs" />
           <NavigationProperty Name="Categories" Relationship="SelectedHotelsModel.Cowrie_CategoryProducts" FromRole="Cowrie_Products" ToRole="Cowrie_Categories" />
+          <Property Name="ExtraDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProductSpec">
           <Key>
@@ -914,6 +916,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Product)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
               <MappingFragment StoreEntitySet="Cowrie_Products">
+                <ScalarProperty Name="ExtraDescription" ColumnName="ExtraDescription" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
