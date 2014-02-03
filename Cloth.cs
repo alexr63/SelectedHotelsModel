@@ -19,7 +19,6 @@ namespace SelectedHotelsModel
             this.ClothSizes = new HashSet<ClothSize>();
         }
     
-        public string Size { get; set; }
         public string Colour { get; set; }
         public string Brand { get; set; }
         public string Style { get; set; }
