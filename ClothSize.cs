@@ -12,18 +12,12 @@ namespace SelectedHotelsModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Cloth : Product
+    public partial class ClothSize
     {
-        public Cloth()
-        {
-            this.ClothSizes = new HashSet<ClothSize>();
-        }
-    
+        public int Id { get; set; }
+        public int ClothId { get; set; }
         public string Size { get; set; }
-        public string Colour { get; set; }
-        public string Brand { get; set; }
-        public string Style { get; set; }
     
-        public virtual ICollection<ClothSize> ClothSizes { get; set; }
+        public virtual Cloth Cloth { get; set; }
     }
 }

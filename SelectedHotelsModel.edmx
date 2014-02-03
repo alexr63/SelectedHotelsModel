@@ -56,6 +56,14 @@
           <Property Name="Brand" Type="nvarchar" MaxLength="50" />
           <Property Name="Style" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Cowrie_ClothSizes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClothId" Type="int" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cowrie_Feeds">
           <Key>
             <PropertyRef Name="Id" />
@@ -106,7 +114,6 @@
           <Property Name="Star" Type="decimal" Precision="18" Scale="1" />
           <Property Name="CustomerRating" Type="decimal" Precision="18" Scale="1" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Lat" Type="float" />
           <Property Name="Lon" Type="float" />
           <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
@@ -134,7 +141,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="URL" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="512" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Cowrie_Products">
@@ -145,12 +152,13 @@
           <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Number" Type="nvarchar" MaxLength="50" />
           <Property Name="UnitCost" Type="money" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="URL" Type="nvarchar" MaxLength="250" />
+          <Property Name="URL" Type="varchar" MaxLength="512" />
           <Property Name="CreatedByUser" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Image" Type="nvarchar" MaxLength="250" />
+          <Property Name="Image" Type="varchar" MaxLength="512" />
           <Property Name="ProductTypeId" Type="int" />
           <Property Name="ExtraDescription" Type="nvarchar(max)" />
         </EntityType>
@@ -250,6 +258,20 @@
             </Principal>
             <Dependent Role="Cowrie_Clothes">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_ClothSizes_Cowrie_Clothes">
+          <End Role="Cowrie_Clothes" Type="Self.Cowrie_Clothes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cowrie_ClothSizes" Type="Self.Cowrie_ClothSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Clothes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_ClothSizes">
+              <PropertyRef Name="ClothId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -401,6 +423,7 @@
           <EntitySet Name="Cowrie_Categories" EntityType="Self.Cowrie_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_CategoryProducts" EntityType="Self.Cowrie_CategoryProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Clothes" EntityType="Self.Cowrie_Clothes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_ClothSizes" EntityType="Self.Cowrie_ClothSizes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Feeds" EntityType="Self.Cowrie_Feeds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_HomeAndGardens" EntityType="Self.Cowrie_HomeAndGardens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_HotelLocations" EntityType="Self.Cowrie_HotelLocations" Schema="dbo" store:Type="Tables" />
@@ -434,6 +457,10 @@
           <AssociationSet Name="FK_Cowrie_Clothes_Cowrie_Products" Association="Self.FK_Cowrie_Clothes_Cowrie_Products">
             <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
             <End Role="Cowrie_Clothes" EntitySet="Cowrie_Clothes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_ClothSizes_Cowrie_Clothes" Association="Self.FK_Cowrie_ClothSizes_Cowrie_Clothes">
+            <End Role="Cowrie_Clothes" EntitySet="Cowrie_Clothes" />
+            <End Role="Cowrie_ClothSizes" EntitySet="Cowrie_ClothSizes" />
           </AssociationSet>
           <AssociationSet Name="FK_Cowrie_HomeAndGardens_Cowrie_Products" Association="Self.FK_Cowrie_HomeAndGardens_Cowrie_Products">
             <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
@@ -517,6 +544,7 @@
           <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClothSizes" Relationship="SelectedHotelsModel.FK_Cowrie_ClothSizes_Cowrie_Clothes" FromRole="Cloth" ToRole="Cowrie_ClothSizes" />
         </EntityType>
         <EntityType Name="Feed">
           <Key>
@@ -551,7 +579,6 @@
           <Property Name="Star" Type="Decimal" Precision="18" Scale="1" />
           <Property Name="CustomerRating" Type="Decimal" Precision="18" Scale="1" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Lat" Type="Double" />
           <Property Name="Lon" Type="Double" />
           <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -588,7 +615,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="URL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Cowrie_ProductImages_Cowrie_Products" FromRole="ProductImages" ToRole="Product" />
         </EntityType>
@@ -601,17 +628,18 @@
           <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitCost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="URL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="CreatedByUser" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="ProductTypeId" Type="Int32" />
           <NavigationProperty Name="ProductImages" Relationship="Self.FK_Cowrie_ProductImages_Cowrie_Products" FromRole="Product" ToRole="ProductImages" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK_Cowrie_Products_Cowrie_ProductTypes" FromRole="Products" ToRole="ProductType" />
           <NavigationProperty Name="ProductSpecs" Relationship="Self.FK_Cowrie_ProductSpecs_Cowrie_Products" FromRole="Product" ToRole="ProductSpecs" />
           <NavigationProperty Name="Categories" Relationship="SelectedHotelsModel.Cowrie_CategoryProducts" FromRole="Cowrie_Products" ToRole="Cowrie_Categories" />
           <Property Name="ExtraDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProductSpec">
           <Key>
@@ -778,6 +806,11 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="Cowrie_HotelLocations" EntitySet="HotelLocations" />
           </AssociationSet>
+          <EntitySet Name="ClothSizes" EntityType="SelectedHotelsModel.ClothSize" />
+          <AssociationSet Name="FK_Cowrie_ClothSizes_Cowrie_Clothes" Association="SelectedHotelsModel.FK_Cowrie_ClothSizes_Cowrie_Clothes">
+            <End Role="Cloth" EntitySet="Products" />
+            <End Role="Cowrie_ClothSizes" EntitySet="ClothSizes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HotelLocation">
           <Key>
@@ -826,6 +859,29 @@
             </Principal>
             <Dependent Role="Cowrie_HotelLocations">
               <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClothSize">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClothId" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cloth" Relationship="SelectedHotelsModel.FK_Cowrie_ClothSizes_Cowrie_Clothes" FromRole="Cowrie_ClothSizes" ToRole="Cloth" />
+        </EntityType>
+        <Association Name="FK_Cowrie_ClothSizes_Cowrie_Clothes">
+          <End Type="SelectedHotelsModel.Cloth" Role="Cloth" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SelectedHotelsModel.ClothSize" Role="Cowrie_ClothSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cloth">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_ClothSizes">
+              <PropertyRef Name="ClothId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -916,6 +972,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Product)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
               <MappingFragment StoreEntitySet="Cowrie_Products">
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
                 <ScalarProperty Name="ExtraDescription" ColumnName="ExtraDescription" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
@@ -965,7 +1022,6 @@
                 <ScalarProperty Name="PostCode" ColumnName="PostCode" />
                 <ScalarProperty Name="Lon" ColumnName="Lon" />
                 <ScalarProperty Name="Lat" ColumnName="Lat" />
-                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CustomerRating" ColumnName="CustomerRating" />
                 <ScalarProperty Name="Star" ColumnName="Star" />
@@ -1005,6 +1061,15 @@
                 <ScalarProperty Name="HotelTypeId" ColumnName="HotelTypeId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClothSizes">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.ClothSize">
+              <MappingFragment StoreEntitySet="Cowrie_ClothSizes">
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ClothId" ColumnName="ClothId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

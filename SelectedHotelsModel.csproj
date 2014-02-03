@@ -63,6 +63,9 @@
     <Compile Include="Cloth.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClothSize.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Feed.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
