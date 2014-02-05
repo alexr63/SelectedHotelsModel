@@ -85,6 +85,9 @@
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LocationExt.cs" />
+    <Compile Include="MerchantCategory.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
