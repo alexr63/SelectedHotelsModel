@@ -22,7 +22,7 @@ namespace SelectedHotelsModel
         public string Colour { get; set; }
         public string Style { get; set; }
         public Nullable<int> MerchantCategoryId { get; set; }
-        public Nullable<int> BrandId { get; set; }
+        public int BrandId { get; set; }
     
         public virtual ICollection<ClothSize> ClothSizes { get; set; }
         public virtual MerchantCategory MerchantCategory { get; set; }
