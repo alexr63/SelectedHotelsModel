@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc0dcff12cb143bcb9cb40246439c13b" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="cc0dcff12cb143bcb9cb40246439c13b" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="SelectedHotelsModel.Boat" Width="1.5" PointX="4.125" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SelectedHotelsModel.Book" Width="1.5" PointX="6.375" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SelectedHotelsModel.Category" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
@@ -39,6 +39,8 @@
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_ClothSizes_Cowrie_Clothes" />
         <EntityTypeShape EntityType="SelectedHotelsModel.MerchantCategory" Width="1.5" PointX="10.75" PointY="24" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_MerchantCategories" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Brand" Width="1.5" PointX="12.75" PointY="24" />
+        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Brands" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

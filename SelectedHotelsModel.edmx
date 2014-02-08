@@ -29,6 +29,13 @@
           <Property Name="Author" Type="nvarchar" MaxLength="50" />
           <Property Name="ISBN" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Cowrie_Brands">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cowrie_Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -52,7 +59,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Colour" Type="nvarchar" MaxLength="50" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrandId" Type="int" />
           <Property Name="Style" Type="nvarchar" MaxLength="50" />
           <Property Name="MerchantCategoryId" Type="int" />
         </EntityType>
@@ -254,6 +261,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cowrie_Clothes_Cowrie_Brands">
+          <End Role="Cowrie_Brands" Type="Self.Cowrie_Brands" Multiplicity="0..1" />
+          <End Role="Cowrie_Clothes" Type="Self.Cowrie_Clothes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Brands">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_Clothes">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cowrie_Clothes_Cowrie_MerchantCategories">
           <End Role="Cowrie_MerchantCategories" Type="Self.Cowrie_MerchantCategories" Multiplicity="0..1" />
           <End Role="Cowrie_Clothes" Type="Self.Cowrie_Clothes" Multiplicity="*" />
@@ -439,6 +458,7 @@
         <EntityContainer Name="SelectedHotelsModelStoreContainer">
           <EntitySet Name="Cowrie_Boats" EntityType="Self.Cowrie_Boats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Books" EntityType="Self.Cowrie_Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_Brands" EntityType="Self.Cowrie_Brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Categories" EntityType="Self.Cowrie_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_CategoryProducts" EntityType="Self.Cowrie_CategoryProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Clothes" EntityType="Self.Cowrie_Clothes" Schema="dbo" store:Type="Tables" />
@@ -473,6 +493,10 @@
           <AssociationSet Name="FK_Cowrie_CategoryProducts_Cowrie_Products" Association="Self.FK_Cowrie_CategoryProducts_Cowrie_Products">
             <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
             <End Role="Cowrie_CategoryProducts" EntitySet="Cowrie_CategoryProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_Clothes_Cowrie_Brands" Association="Self.FK_Cowrie_Clothes_Cowrie_Brands">
+            <End Role="Cowrie_Brands" EntitySet="Cowrie_Brands" />
+            <End Role="Cowrie_Clothes" EntitySet="Cowrie_Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_Cowrie_Clothes_Cowrie_MerchantCategories" Association="Self.FK_Cowrie_Clothes_Cowrie_MerchantCategories">
             <End Role="Cowrie_MerchantCategories" EntitySet="Cowrie_MerchantCategories" />
@@ -565,11 +589,12 @@
         </EntityType>
         <EntityType Name="Cloth" BaseType="SelectedHotelsModel.Product">
           <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClothSizes" Relationship="SelectedHotelsModel.FK_Cowrie_ClothSizes_Cowrie_Clothes" FromRole="Cloth" ToRole="Cowrie_ClothSizes" />
           <Property Name="MerchantCategoryId" Type="Int32" />
           <NavigationProperty Name="MerchantCategory" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_MerchantCategories" FromRole="Cloth" ToRole="Cowrie_MerchantCategories" />
+          <Property Name="BrandId" Type="Int32" />
+          <NavigationProperty Name="Brand" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Brands" FromRole="Cloth" ToRole="Cowrie_Brands" />
         </EntityType>
         <EntityType Name="Feed">
           <Key>
@@ -841,6 +866,11 @@
             <End Role="Cowrie_MerchantCategories" EntitySet="MerchantCategories" />
             <End Role="Cloth" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="Brands" EntityType="SelectedHotelsModel.Brand" />
+          <AssociationSet Name="FK_Cowrie_Clothes_Cowrie_Brands" Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Brands">
+            <End Role="Cowrie_Brands" EntitySet="Brands" />
+            <End Role="Cloth" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HotelLocation">
           <Key>
@@ -932,6 +962,26 @@
             </Principal>
             <Dependent Role="Cloth">
               <PropertyRef Name="MerchantCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clothes" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Brands" FromRole="Cowrie_Brands" ToRole="Cloth" />
+        </EntityType>
+        <Association Name="FK_Cowrie_Clothes_Cowrie_Brands">
+          <End Type="SelectedHotelsModel.Brand" Role="Cowrie_Brands" Multiplicity="0..1" />
+          <End Type="SelectedHotelsModel.Cloth" Role="Cloth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_Brands">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cloth">
+              <PropertyRef Name="BrandId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1046,10 +1096,10 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Cloth)">
               <MappingFragment StoreEntitySet="Cowrie_Clothes">
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="MerchantCategoryId" ColumnName="MerchantCategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Style" ColumnName="Style" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
                 <ScalarProperty Name="Colour" ColumnName="Colour" />
                 
               </MappingFragment>
@@ -1127,6 +1177,14 @@
           <EntitySetMapping Name="MerchantCategories">
             <EntityTypeMapping TypeName="SelectedHotelsModel.MerchantCategory">
               <MappingFragment StoreEntitySet="Cowrie_MerchantCategories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.Brand">
+              <MappingFragment StoreEntitySet="Cowrie_Brands">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

@@ -57,6 +57,9 @@
     <Compile Include="Book.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Brand.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
