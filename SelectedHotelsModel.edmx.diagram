@@ -41,6 +41,10 @@
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_MerchantCategories" />
         <EntityTypeShape EntityType="SelectedHotelsModel.Brand" Width="1.5" PointX="12.75" PointY="24" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Brands" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Style" Width="1.5" PointX="15" PointY="23.625" />
+        <AssociationConnector Association="SelectedHotelsModel.Cowrie_ClothStyles" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Department" Width="1.5" PointX="16.875" PointY="23.625" />
+        <AssociationConnector Association="SelectedHotelsModel.Cowrie_ClothDepartments" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
