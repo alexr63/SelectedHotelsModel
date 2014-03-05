@@ -35,16 +35,20 @@
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Hotels" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_HotelTypes" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Locations" />
-        <EntityTypeShape EntityType="SelectedHotelsModel.ClothSize" Width="1.5" PointX="8.625" PointY="24.125" />
-        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_ClothSizes_Cowrie_Clothes" />
-        <EntityTypeShape EntityType="SelectedHotelsModel.MerchantCategory" Width="1.5" PointX="10.75" PointY="24" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.MerchantCategory" Width="1.5" PointX="12.25" PointY="26.75" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_MerchantCategories" />
-        <EntityTypeShape EntityType="SelectedHotelsModel.Brand" Width="1.5" PointX="12.75" PointY="24" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Brand" Width="1.5" PointX="14" PointY="26.75" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Brands" />
-        <EntityTypeShape EntityType="SelectedHotelsModel.Style" Width="1.5" PointX="15" PointY="23.625" />
-        <AssociationConnector Association="SelectedHotelsModel.Cowrie_ClothStyles" />
-        <EntityTypeShape EntityType="SelectedHotelsModel.Department" Width="1.5" PointX="16.875" PointY="23.625" />
-        <AssociationConnector Association="SelectedHotelsModel.Cowrie_ClothDepartments" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Style" Width="1.5" PointX="16" PointY="26" />
+        <AssociationConnector Association="SelectedHotelsModel.ClothStyles" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Department" Width="1.5" PointX="17.75" PointY="25.375" />
+        <AssociationConnector Association="SelectedHotelsModel.ClothDepartments" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Colour" Width="1.5" PointX="8.75" PointY="26.75" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Gender" Width="1.5" PointX="10.5" PointY="26.75" />
+        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Colours" />
+        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Genders" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.Size" Width="1.5" PointX="19.625" PointY="24.625" />
+        <AssociationConnector Association="SelectedHotelsModel.ClothSizes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

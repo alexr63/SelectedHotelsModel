@@ -34,10 +34,12 @@ namespace SelectedHotelsModel
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<HotelLocation> HotelLocations { get; set; }
-        public virtual DbSet<ClothSize> ClothSizes { get; set; }
         public virtual DbSet<MerchantCategory> MerchantCategories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Style> Styles { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Colour> Colours { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
     }
 }

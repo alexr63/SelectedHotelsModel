@@ -66,13 +66,16 @@
     <Compile Include="Cloth.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClothSize.cs">
+    <Compile Include="Colour.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Feed.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gender.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HomeAndGarden.cs">
@@ -122,6 +125,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SelectedHotelsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Size.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Style.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>

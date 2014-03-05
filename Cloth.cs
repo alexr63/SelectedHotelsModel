@@ -16,20 +16,22 @@ namespace SelectedHotelsModel
     {
         public Cloth()
         {
-            this.ClothSizes = new HashSet<ClothSize>();
             this.Styles = new HashSet<Style>();
             this.Departments = new HashSet<Department>();
+            this.Sizes = new HashSet<Size>();
         }
     
-        public string Colour { get; set; }
         public Nullable<int> MerchantCategoryId { get; set; }
         public int BrandId { get; set; }
-        public string Gender { get; set; }
+        public Nullable<int> ColourId { get; set; }
+        public Nullable<int> GenderId { get; set; }
     
-        public virtual ICollection<ClothSize> ClothSizes { get; set; }
         public virtual MerchantCategory MerchantCategory { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual ICollection<Style> Styles { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
+        public virtual Colour Colour { get; set; }
+        public virtual Gender Gender { get; set; }
+        public virtual ICollection<Size> Sizes { get; set; }
     }
 }
