@@ -70,6 +70,7 @@
           <Property Name="BrandId" Type="int" Nullable="false" />
           <Property Name="MerchantCategoryId" Type="int" />
           <Property Name="GenderId" Type="int" />
+          <Property Name="CustomerRating" Type="decimal" Precision="18" Scale="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Cowrie_ClothSizes">
           <Key>
@@ -773,6 +774,7 @@
           <NavigationProperty Name="Colour" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Colours" FromRole="Cloth" ToRole="Cowrie_Colours" />
           <NavigationProperty Name="Gender" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Genders" FromRole="Cloth" ToRole="Cowrie_Genders" />
           <NavigationProperty Name="Sizes" Relationship="SelectedHotelsModel.ClothSizes" FromRole="Cloth" ToRole="Sizes" />
+          <Property Name="CustomerRating" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Feed">
           <Key>
@@ -1347,6 +1349,7 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Cloth)">
               <MappingFragment StoreEntitySet="Cowrie_Clothes">
+                <ScalarProperty Name="CustomerRating" ColumnName="CustomerRating" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="ColourId" ColumnName="ColourId" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
