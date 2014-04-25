@@ -13,9 +13,8 @@ namespace SelectedHotelsModel
                                    where !p.IsDeleted
                                    select p).OfType<Hotel>().ToList();
             var query = from h in hotels
-                        where (h.LocationId == locationId || h.Location.ParentId == locationId ||
-                              (h.Location.ParentLocation != null && h.Location.ParentLocation.ParentId == locationId)) &&
-                              (hotelTypeId == null || h.HotelTypeId == hotelTypeId.Value)
+                        where (h.HotelLocations.Any(hl => hl.LocationId == locationId)) &&
+                              (h.HotelTypeId == hotelTypeId)
                         select h;
             return query;
         }

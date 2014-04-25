@@ -41,5 +41,6 @@ namespace SelectedHotelsModel
         public virtual DbSet<Colour> Colours { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<LocationType> LocationTypes { get; set; }
     }
 }

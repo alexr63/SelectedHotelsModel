@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="SelectedHotelsModel.ProductType" Width="1.5" PointX="1.125" PointY="14.125" IsExpanded="true" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Categories_Cowrie_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Hotels_Cowrie_HotelTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Hotels_Cowrie_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Locations_Cowrie_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_ProductImages_Cowrie_Products" ManuallyRouted="false" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Products_Cowrie_ProductTypes" ManuallyRouted="false" />
@@ -49,6 +48,8 @@
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Genders" />
         <EntityTypeShape EntityType="SelectedHotelsModel.Size" Width="1.5" PointX="19.625" PointY="24.625" />
         <AssociationConnector Association="SelectedHotelsModel.ClothSizes" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.LocationType" Width="1.5" PointX="3.5" PointY="30.375" />
+        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Locations_Cowrie_LocationTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

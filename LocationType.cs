@@ -12,23 +12,16 @@ namespace SelectedHotelsModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Location
+    public partial class LocationType
     {
-        public Location()
+        public LocationType()
         {
-            this.SubLocations = new HashSet<Location>();
-            this.HotelLocations = new HashSet<HotelLocation>();
+            this.Locations = new HashSet<Location>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> ParentId { get; set; }
-        public bool IsDeleted { get; set; }
-        public int LocationTypeId { get; set; }
     
-        public virtual ICollection<Location> SubLocations { get; set; }
-        public virtual Location ParentLocation { get; set; }
-        public virtual ICollection<HotelLocation> HotelLocations { get; set; }
-        public virtual LocationType LocationType { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
     }
 }
