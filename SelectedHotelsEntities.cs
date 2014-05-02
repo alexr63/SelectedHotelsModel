@@ -14,7 +14,7 @@ namespace SelectedHotelsModel
                                    select p).OfType<Hotel>().ToList();
             var query = from h in hotels
                         where (h.HotelLocations.Any(hl => hl.LocationId == locationId)) &&
-                              (h.HotelTypeId == hotelTypeId)
+                              ((hotelTypeId == null) || (h.HotelTypeId == hotelTypeId))
                         select h;
             return query;
         }
