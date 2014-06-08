@@ -71,6 +71,7 @@
           <Property Name="MerchantCategoryId" Type="int" />
           <Property Name="GenderId" Type="int" />
           <Property Name="CustomerRating" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="MerchantCategoryName" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Cowrie_ClothSizes">
           <Key>
@@ -193,6 +194,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Cowrie_ProductImages">
           <Key>
@@ -783,6 +785,7 @@
           <NavigationProperty Name="Gender" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_Genders" FromRole="Cloth" ToRole="Cowrie_Genders" />
           <NavigationProperty Name="Sizes" Relationship="SelectedHotelsModel.ClothSizes" FromRole="Cloth" ToRole="Sizes" />
           <Property Name="CustomerRating" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="MerchantCategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Feed">
           <Key>
@@ -1125,6 +1128,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clothes" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_MerchantCategories" FromRole="Cowrie_MerchantCategories" ToRole="Cloth" />
+          <Property Name="ParentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Cowrie_Clothes_Cowrie_MerchantCategories">
           <End Type="SelectedHotelsModel.MerchantCategory" Role="Cowrie_MerchantCategories" Multiplicity="0..1" />
@@ -1366,6 +1370,7 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Cloth)">
               <MappingFragment StoreEntitySet="Cowrie_Clothes">
+                <ScalarProperty Name="MerchantCategoryName" ColumnName="MerchantCategoryName" />
                 <ScalarProperty Name="CustomerRating" ColumnName="CustomerRating" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="ColourId" ColumnName="ColourId" />
@@ -1438,6 +1443,7 @@
           <EntitySetMapping Name="MerchantCategories">
             <EntityTypeMapping TypeName="SelectedHotelsModel.MerchantCategory">
               <MappingFragment StoreEntitySet="Cowrie_MerchantCategories">
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

@@ -21,6 +21,7 @@ namespace SelectedHotelsModel
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ParentName { get; set; }
     
         public virtual ICollection<Cloth> Clothes { get; set; }
     }
