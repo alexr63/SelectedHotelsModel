@@ -17,12 +17,15 @@ namespace SelectedHotelsModel
         public MerchantCategory()
         {
             this.Clothes = new HashSet<Cloth>();
+            this.SubMerchantCategories = new HashSet<MerchantCategory>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string ParentName { get; set; }
+        public Nullable<int> ParentId { get; set; }
     
         public virtual ICollection<Cloth> Clothes { get; set; }
+        public virtual ICollection<MerchantCategory> SubMerchantCategories { get; set; }
+        public virtual MerchantCategory ParentMerchantCategory { get; set; }
     }
 }

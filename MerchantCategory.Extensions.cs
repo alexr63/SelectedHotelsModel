@@ -11,7 +11,14 @@ namespace SelectedHotelsModel
         {
             get
             {
-                return String.Format("{0} > {1}", ParentName, Name);
+                if (ParentMerchantCategory != null)
+                {
+                    return String.Format("{0} > {1}", ParentMerchantCategory.Name, Name);
+                }
+                else
+                {
+                    return Name;
+                }
             }
         }
     }

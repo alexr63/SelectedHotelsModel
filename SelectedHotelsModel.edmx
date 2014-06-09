@@ -194,7 +194,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ParentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentId" Type="int" />
         </EntityType>
         <EntityType Name="Cowrie_ProductImages">
           <Key>
@@ -564,6 +564,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories">
+          <End Role="Cowrie_MerchantCategories" Type="Self.Cowrie_MerchantCategories" Multiplicity="0..1" />
+          <End Role="Cowrie_MerchantCategories1" Type="Self.Cowrie_MerchantCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cowrie_MerchantCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cowrie_MerchantCategories1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cowrie_ProductImages_Cowrie_Products">
           <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -726,6 +738,10 @@
           <AssociationSet Name="FK_Cowrie_Locations_Cowrie_LocationTypes" Association="Self.FK_Cowrie_Locations_Cowrie_LocationTypes">
             <End Role="Cowrie_LocationTypes" EntitySet="Cowrie_LocationTypes" />
             <End Role="Cowrie_Locations" EntitySet="Cowrie_Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories" Association="Self.FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories">
+            <End Role="Cowrie_MerchantCategories" EntitySet="Cowrie_MerchantCategories" />
+            <End Role="Cowrie_MerchantCategories1" EntitySet="Cowrie_MerchantCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Cowrie_ProductImages_Cowrie_Products" Association="Self.FK_Cowrie_ProductImages_Cowrie_Products">
             <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
@@ -1070,6 +1086,10 @@
             <End Role="Cowrie_LocationTypes" EntitySet="LocationTypes" />
             <End Role="Location" EntitySet="Locations" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories" Association="SelectedHotelsModel.FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories">
+            <End Role="MerchantCategory" EntitySet="MerchantCategories" />
+            <End Role="MerchantCategory1" EntitySet="MerchantCategories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HotelLocation">
           <Key>
@@ -1128,7 +1148,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clothes" Relationship="SelectedHotelsModel.FK_Cowrie_Clothes_Cowrie_MerchantCategories" FromRole="Cowrie_MerchantCategories" ToRole="Cloth" />
-          <Property Name="ParentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="SubMerchantCategories" Relationship="SelectedHotelsModel.FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories" FromRole="MerchantCategory" ToRole="MerchantCategory1" />
+          <NavigationProperty Name="ParentMerchantCategory" Relationship="SelectedHotelsModel.FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories" FromRole="MerchantCategory1" ToRole="MerchantCategory" />
         </EntityType>
         <Association Name="FK_Cowrie_Clothes_Cowrie_MerchantCategories">
           <End Type="SelectedHotelsModel.MerchantCategory" Role="Cowrie_MerchantCategories" Multiplicity="0..1" />
@@ -1255,6 +1277,18 @@
             </Principal>
             <Dependent Role="Location">
               <PropertyRef Name="LocationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories">
+          <End Type="SelectedHotelsModel.MerchantCategory" Role="MerchantCategory" Multiplicity="0..1" />
+          <End Type="SelectedHotelsModel.MerchantCategory" Role="MerchantCategory1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MerchantCategory1">
+              <PropertyRef Name="ParentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1443,7 +1477,7 @@
           <EntitySetMapping Name="MerchantCategories">
             <EntityTypeMapping TypeName="SelectedHotelsModel.MerchantCategory">
               <MappingFragment StoreEntitySet="Cowrie_MerchantCategories">
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

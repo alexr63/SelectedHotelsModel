@@ -50,6 +50,7 @@
         <AssociationConnector Association="SelectedHotelsModel.ClothSizes" />
         <EntityTypeShape EntityType="SelectedHotelsModel.LocationType" Width="1.5" PointX="3.5" PointY="30.375" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Locations_Cowrie_LocationTypes" />
+        <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_MerchantCategories_Cowrie_MerchantCategories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
