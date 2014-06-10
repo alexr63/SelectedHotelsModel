@@ -26,7 +26,6 @@ namespace SelectedHotelsModel
         public Nullable<int> ColourId { get; set; }
         public Nullable<int> GenderId { get; set; }
         public decimal CustomerRating { get; set; }
-        public string MerchantCategoryName { get; set; }
     
         public virtual MerchantCategory MerchantCategory { get; set; }
         public virtual Brand Brand { get; set; }
