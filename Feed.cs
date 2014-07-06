@@ -14,6 +14,11 @@ namespace SelectedHotelsModel
     
     public partial class Feed
     {
+        public Feed()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -29,5 +34,7 @@ namespace SelectedHotelsModel
         public Nullable<int> StepImport { get; set; }
         public Nullable<int> StepAddToCategories { get; set; }
         public Nullable<int> StepAddImages { get; set; }
+    
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -78,10 +78,19 @@
     <Compile Include="Gender.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeoName.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hierarchy.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HomeAndGarden.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelGeoLocation.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HotelLocation.cs">

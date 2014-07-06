@@ -17,6 +17,7 @@ namespace SelectedHotelsModel
         public Hotel()
         {
             this.HotelLocations = new HashSet<HotelLocation>();
+            this.HotelGeoLocations = new HashSet<HotelGeoLocation>();
         }
     
         public Nullable<int> Rooms { get; set; }
@@ -27,8 +28,10 @@ namespace SelectedHotelsModel
         public Nullable<double> Lon { get; set; }
         public string PostCode { get; set; }
         public int HotelTypeId { get; set; }
+        public Nullable<int> GeoLocationId { get; set; }
     
         public virtual HotelType HotelType { get; set; }
         public virtual ICollection<HotelLocation> HotelLocations { get; set; }
+        public virtual ICollection<HotelGeoLocation> HotelGeoLocations { get; set; }
     }
 }

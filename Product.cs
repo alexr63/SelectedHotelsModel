@@ -34,10 +34,12 @@ namespace SelectedHotelsModel
         public Nullable<int> ProductTypeId { get; set; }
         public string ExtraDescription { get; set; }
         public string CurrencyCode { get; set; }
+        public Nullable<int> FeedId { get; set; }
     
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual ProductType ProductType { get; set; }
         public virtual ICollection<ProductSpec> ProductSpecs { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
+        public virtual Feed Feed { get; set; }
     }
 }

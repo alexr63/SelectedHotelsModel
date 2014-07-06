@@ -9,14 +9,25 @@ namespace SelectedHotelsModel
    {
         public IEnumerable<Hotel> HotelsInLocation(int locationId, int? hotelTypeId = null)
         {
-            IList<Hotel> hotels = (from p in Products
-                                   where !p.IsDeleted
-                                   select p).OfType<Hotel>().ToList();
-            var query = from h in hotels
-                        where (h.HotelLocations.Any(hl => hl.LocationId == locationId)) &&
-                              ((hotelTypeId == null) || (h.HotelTypeId == hotelTypeId))
-                        select h;
+            var query =
+                HotelLocations.Where(
+                    hl =>
+                        hl.LocationId == locationId &&
+                        (hotelTypeId == null || hl.HotelTypeId == hotelTypeId) &&
+                        !hl.Hotel.IsDeleted)
+                    .Select(hl => hl.Hotel);
             return query;
         }
-    }
+        public IEnumerable<Hotel> HotelsInGeoLocation(int locationId, int? hotelTypeId = null)
+        {
+            var query =
+                HotelLocations.Where(
+                    hl =>
+                        hl.LocationId == locationId &&
+                        (hotelTypeId == null || hl.HotelTypeId == hotelTypeId) &&
+                        !hl.Hotel.IsDeleted)
+                    .Select(hl => hl.Hotel);
+            return query;
+        }
+   }
 }

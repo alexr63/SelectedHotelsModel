@@ -42,5 +42,8 @@ namespace SelectedHotelsModel
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<LocationType> LocationTypes { get; set; }
+        public virtual DbSet<GeoName> GeoNames { get; set; }
+        public virtual DbSet<Hierarchy> Hierarchies { get; set; }
+        public virtual DbSet<HotelGeoLocation> HotelGeoLocations { get; set; }
     }
 }
