@@ -29,6 +29,7 @@ namespace SelectedHotelsModel
         public string PostCode { get; set; }
         public int HotelTypeId { get; set; }
         public Nullable<int> GeoLocationId { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Location { get; set; }
     
         public virtual HotelType HotelType { get; set; }
         public virtual ICollection<HotelLocation> HotelLocations { get; set; }

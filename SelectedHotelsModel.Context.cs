@@ -12,6 +12,8 @@ namespace SelectedHotelsModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SelectedHotelsEntities : DbContext
     {
@@ -45,5 +47,26 @@ namespace SelectedHotelsModel
         public virtual DbSet<GeoName> GeoNames { get; set; }
         public virtual DbSet<Hierarchy> Hierarchies { get; set; }
         public virtual DbSet<HotelGeoLocation> HotelGeoLocations { get; set; }
+    
+        public virtual ObjectResult<Nullable<double>> Distance(Nullable<double> lon1, Nullable<double> lat1, Nullable<double> lon2, Nullable<double> lat2)
+        {
+            var lon1Parameter = lon1.HasValue ?
+                new ObjectParameter("lon1", lon1) :
+                new ObjectParameter("lon1", typeof(double));
+    
+            var lat1Parameter = lat1.HasValue ?
+                new ObjectParameter("lat1", lat1) :
+                new ObjectParameter("lat1", typeof(double));
+    
+            var lon2Parameter = lon2.HasValue ?
+                new ObjectParameter("lon2", lon2) :
+                new ObjectParameter("lon2", typeof(double));
+    
+            var lat2Parameter = lat2.HasValue ?
+                new ObjectParameter("lat2", lat2) :
+                new ObjectParameter("lat2", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("Distance", lon1Parameter, lat1Parameter, lon2Parameter, lat2Parameter);
+        }
     }
 }

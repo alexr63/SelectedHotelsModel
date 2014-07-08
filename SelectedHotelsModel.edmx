@@ -196,6 +196,7 @@
           <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelTypeId" Type="int" Nullable="false" />
           <Property Name="GeoLocationId" Type="int" />
+          <Property Name="Location" Type="geography" />
         </EntityType>
         <EntityType Name="Cowrie_HotelTypes">
           <Key>
@@ -700,6 +701,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Cowrie_Distance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lon1" Type="float" Mode="In" />
+          <Parameter Name="lat1" Type="float" Mode="In" />
+          <Parameter Name="lon2" Type="float" Mode="In" />
+          <Parameter Name="lat2" Type="float" Mode="In" />
+        </Function>
         <EntityContainer Name="SelectedHotelsModelStoreContainer">
           <EntitySet Name="Cowrie_Boats" EntityType="Self.Cowrie_Boats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Books" EntityType="Self.Cowrie_Books" Schema="dbo" store:Type="Tables" />
@@ -946,6 +953,7 @@
           <NavigationProperty Name="HotelLocations" Relationship="SelectedHotelsModel.FK_Cowrie_HotelLocations_Cowrie_Hotels" FromRole="Hotel" ToRole="Cowrie_HotelLocations" />
           <Property Name="GeoLocationId" Type="Int32" />
           <NavigationProperty Name="HotelGeoLocations" Relationship="SelectedHotelsModel.FK_Cowrie_HotelGeoLocations_Cowrie_Hotels" FromRole="Hotel" ToRole="Cowrie_HotelGeoLocations" />
+          <Property Name="Location" Type="Geography" />
         </EntityType>
         <EntityType Name="HotelType">
           <Key>
@@ -1217,6 +1225,12 @@
             <End Role="HotelType" EntitySet="HotelTypes" />
             <End Role="Cowrie_HotelGeoLocations" EntitySet="HotelGeoLocations" />
           </AssociationSet>
+          <FunctionImport Name="Distance" ReturnType="Collection(Double)">
+            <Parameter Name="lon1" Mode="In" Type="Double" />
+            <Parameter Name="lat1" Mode="In" Type="Double" />
+            <Parameter Name="lon2" Mode="In" Type="Double" />
+            <Parameter Name="lat2" Mode="In" Type="Double" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="HotelLocation">
           <Key>
@@ -1641,6 +1655,7 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(SelectedHotelsModel.Hotel)">
               <MappingFragment StoreEntitySet="Cowrie_Hotels">
+                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="GeoLocationId" ColumnName="GeoLocationId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="HotelTypeId" ColumnName="HotelTypeId" />
@@ -1814,6 +1829,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Distance" FunctionName="SelectedHotelsModel.Store.Cowrie_Distance" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
