@@ -16,7 +16,7 @@ namespace SelectedHotelsModel
     {
         public GeoName()
         {
-            this.HotelGeoLocations = new HashSet<HotelGeoLocation>();
+            this.Hotels = new HashSet<Hotel>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace SelectedHotelsModel
         public Nullable<System.DateTime> ModificationDate { get; set; }
         public long Population { get; set; }
     
-        public virtual ICollection<HotelGeoLocation> HotelGeoLocations { get; set; }
+        public virtual ICollection<Hotel> Hotels { get; set; }
     }
 }

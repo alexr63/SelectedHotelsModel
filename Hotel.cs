@@ -14,12 +14,6 @@ namespace SelectedHotelsModel
     
     public partial class Hotel : Product
     {
-        public Hotel()
-        {
-            this.HotelLocations = new HashSet<HotelLocation>();
-            this.HotelGeoLocations = new HashSet<HotelGeoLocation>();
-        }
-    
         public Nullable<int> Rooms { get; set; }
         public Nullable<decimal> Star { get; set; }
         public Nullable<decimal> CustomerRating { get; set; }
@@ -28,11 +22,10 @@ namespace SelectedHotelsModel
         public Nullable<double> Lon { get; set; }
         public string PostCode { get; set; }
         public int HotelTypeId { get; set; }
-        public Nullable<int> GeoLocationId { get; set; }
         public System.Data.Entity.Spatial.DbGeography Location { get; set; }
+        public Nullable<int> GeoNameId { get; set; }
     
         public virtual HotelType HotelType { get; set; }
-        public virtual ICollection<HotelLocation> HotelLocations { get; set; }
-        public virtual ICollection<HotelGeoLocation> HotelGeoLocations { get; set; }
+        public virtual GeoName GeoName { get; set; }
     }
 }

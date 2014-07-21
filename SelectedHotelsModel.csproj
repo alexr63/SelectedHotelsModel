@@ -81,29 +81,13 @@
     <Compile Include="GeoName.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hierarchy.cs">
-      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="HomeAndGarden.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HotelGeoLocation.cs">
-      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HotelLocation.cs">
-      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="HotelType.cs">
-      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Location.cs">
-      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LocationExt.cs" />
-    <Compile Include="LocationType.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MerchantCategory.cs">
@@ -123,7 +107,6 @@
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectedHotelsEntities.cs" />
     <Compile Include="SelectedHotelsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

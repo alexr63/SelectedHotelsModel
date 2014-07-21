@@ -30,12 +30,10 @@ namespace SelectedHotelsModel
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Feed> Feeds { get; set; }
         public virtual DbSet<HotelType> HotelTypes { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<ProductSpec> ProductSpecs { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<HotelLocation> HotelLocations { get; set; }
         public virtual DbSet<MerchantCategory> MerchantCategories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Style> Styles { get; set; }
@@ -43,10 +41,7 @@ namespace SelectedHotelsModel
         public virtual DbSet<Colour> Colours { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
-        public virtual DbSet<LocationType> LocationTypes { get; set; }
         public virtual DbSet<GeoName> GeoNames { get; set; }
-        public virtual DbSet<Hierarchy> Hierarchies { get; set; }
-        public virtual DbSet<HotelGeoLocation> HotelGeoLocations { get; set; }
     
         public virtual ObjectResult<Nullable<double>> Distance(Nullable<double> lon1, Nullable<double> lat1, Nullable<double> lon2, Nullable<double> lat2)
         {
