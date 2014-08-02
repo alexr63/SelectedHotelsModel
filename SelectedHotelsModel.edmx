@@ -142,6 +142,7 @@
           <Property Name="FeatureCode" Type="nvarchar" MaxLength="50" />
           <Property Name="ModificationDate" Type="datetime" />
           <Property Name="Population" Type="bigint" Nullable="false" />
+          <Property Name="Location" Type="geography" />
         </EntityType>
         <EntityType Name="Cowrie_HomeAndGardens">
           <Key>
@@ -1143,6 +1144,7 @@
           <Property Name="ModificationDate" Type="DateTime" Precision="3" />
           <Property Name="Population" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Hotels" Relationship="SelectedHotelsModel.FK_Cowrie_Hotels_Cowrie_GeoNames" FromRole="GeoName" ToRole="Hotel" />
+          <Property Name="Location" Type="Geography" />
         </EntityType>
         <Association Name="FK_Cowrie_Products_Cowrie_Feeds">
           <End Type="SelectedHotelsModel.Feed" Role="Feed" Multiplicity="0..1" />
@@ -1415,6 +1417,7 @@
           <EntitySetMapping Name="GeoNames">
             <EntityTypeMapping TypeName="SelectedHotelsModel.GeoName">
               <MappingFragment StoreEntitySet="Cowrie_GeoNames">
+                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Population" ColumnName="Population" />
                 <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
                 <ScalarProperty Name="FeatureCode" ColumnName="FeatureCode" />

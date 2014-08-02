@@ -28,6 +28,7 @@ namespace SelectedHotelsModel
         public string FeatureCode { get; set; }
         public Nullable<System.DateTime> ModificationDate { get; set; }
         public long Population { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Location { get; set; }
     
         public virtual ICollection<Hotel> Hotels { get; set; }
     }
