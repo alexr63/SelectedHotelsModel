@@ -21,8 +21,6 @@ namespace SelectedHotelsModel
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
         public string CountryCode { get; set; }
         public string FeatureClass { get; set; }
         public string FeatureCode { get; set; }

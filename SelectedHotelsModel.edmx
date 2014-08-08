@@ -135,8 +135,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Latitude" Type="float" />
-          <Property Name="Longitude" Type="float" />
           <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
           <Property Name="FeatureClass" Type="nvarchar" MaxLength="50" />
           <Property Name="FeatureCode" Type="nvarchar" MaxLength="50" />
@@ -1136,8 +1134,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Latitude" Type="Double" />
-          <Property Name="Longitude" Type="Double" />
           <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FeatureClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FeatureCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1423,8 +1419,6 @@
                 <ScalarProperty Name="FeatureCode" ColumnName="FeatureCode" />
                 <ScalarProperty Name="FeatureClass" ColumnName="FeatureClass" />
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
