@@ -162,8 +162,6 @@
           <Property Name="Star" Type="decimal" Precision="18" Scale="1" />
           <Property Name="CustomerRating" Type="decimal" Precision="18" Scale="1" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="Lat" Type="float" />
-          <Property Name="Lon" Type="float" />
           <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelTypeId" Type="int" Nullable="false" />
           <Property Name="GeoNameId" Type="int" />
