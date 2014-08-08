@@ -18,8 +18,6 @@ namespace SelectedHotelsModel
         public Nullable<decimal> Star { get; set; }
         public Nullable<decimal> CustomerRating { get; set; }
         public string Address { get; set; }
-        public Nullable<double> Lat { get; set; }
-        public Nullable<double> Lon { get; set; }
         public string PostCode { get; set; }
         public int HotelTypeId { get; set; }
         public System.Data.Entity.Spatial.DbGeography Location { get; set; }

@@ -772,8 +772,6 @@
           <Property Name="Star" Type="Decimal" Precision="18" Scale="1" />
           <Property Name="CustomerRating" Type="Decimal" Precision="18" Scale="1" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Lat" Type="Double" />
-          <Property Name="Lon" Type="Double" />
           <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HotelType" Relationship="Self.FK_Cowrie_Hotels_Cowrie_HotelTypes" FromRole="Hotels" ToRole="HotelType" />
@@ -1295,8 +1293,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="HotelTypeId" ColumnName="HotelTypeId" />
                 <ScalarProperty Name="PostCode" ColumnName="PostCode" />
-                <ScalarProperty Name="Lon" ColumnName="Lon" />
-                <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CustomerRating" ColumnName="CustomerRating" />
                 <ScalarProperty Name="Star" ColumnName="Star" />
