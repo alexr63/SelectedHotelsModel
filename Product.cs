@@ -19,6 +19,7 @@ namespace SelectedHotelsModel
             this.ProductImages = new HashSet<ProductImage>();
             this.ProductSpecs = new HashSet<ProductSpec>();
             this.Categories = new HashSet<Category>();
+            this.TabHotels = new HashSet<TabHotel>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,6 @@ namespace SelectedHotelsModel
         public virtual ICollection<ProductSpec> ProductSpecs { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual Feed Feed { get; set; }
+        public virtual ICollection<TabHotel> TabHotels { get; set; }
     }
 }

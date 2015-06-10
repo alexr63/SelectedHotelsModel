@@ -42,6 +42,7 @@ namespace SelectedHotelsModel
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<GeoName> GeoNames { get; set; }
+        public virtual DbSet<TabHotel> TabHotels { get; set; }
     
         public virtual ObjectResult<Nullable<double>> Distance(Nullable<double> lon1, Nullable<double> lat1, Nullable<double> lon2, Nullable<double> lat2)
         {
