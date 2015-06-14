@@ -66,6 +66,9 @@
     <Compile Include="Cloth.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClothView.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Colour.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
@@ -88,6 +91,9 @@
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HotelType.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelView.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MerchantCategory.cs">
@@ -129,6 +135,9 @@
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TabHotel.cs">
+      <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UrlRule.cs">
       <DependentUpon>SelectedHotelsModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

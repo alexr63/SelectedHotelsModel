@@ -48,6 +48,9 @@
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_Hotels_Cowrie_GeoNames" />
         <EntityTypeShape EntityType="SelectedHotelsModel.TabHotel" Width="1.5" PointX="6" PointY="23.375" />
         <AssociationConnector Association="SelectedHotelsModel.FK_Cowrie_TabHotels_Cowrie_Products" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.UrlRule" Width="1.5" PointX="7.25" PointY="2.375" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.HotelView" Width="1.5" PointX="9.125" PointY="2.375" />
+        <EntityTypeShape EntityType="SelectedHotelsModel.ClothView" Width="1.5" PointX="9.125" PointY="4.25" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

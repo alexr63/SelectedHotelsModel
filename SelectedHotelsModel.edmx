@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SelectedHotelsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SelectedHotelsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cowrie_Boats">
           <Key>
             <PropertyRef Name="Id" />
@@ -87,6 +87,14 @@
           </Key>
           <Property Name="ClothId" Type="int" Nullable="false" />
           <Property Name="StyleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cowrie_ClothViews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Cowrie_Colours">
           <Key>
@@ -174,6 +182,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Cowrie_HotelViews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="GeoName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="HotelTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cowrie_MerchantCategories">
           <Key>
             <PropertyRef Name="Id" />
@@ -245,10 +262,28 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TabId" Type="int" Nullable="false" />
           <Property Name="HotelId" Type="int" Nullable="false" />
           <Property Name="Distance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OpenUrlRewriter_UrlRule">
+          <Key>
+            <PropertyRef Name="UrlRuleId" />
+          </Key>
+          <Property Name="UrlRuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RuleType" Type="int" Nullable="false" />
+          <Property Name="CultureCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PortalId" Type="int" Nullable="false" />
+          <Property Name="TabId" Type="int" />
+          <Property Name="Parameters" Type="nvarchar" MaxLength="255" />
+          <Property Name="RemoveTab" Type="bit" />
+          <Property Name="RuleAction" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" />
+          <Property Name="RedirectDestination" Type="nvarchar" MaxLength="255" />
+          <Property Name="RedirectStatus" Type="int" />
         </EntityType>
         <Association Name="FK_Cowrie_Boats_Cowrie_Products">
           <End Role="Cowrie_Products" Type="Self.Cowrie_Products" Multiplicity="1">
@@ -598,6 +633,7 @@
           <EntitySet Name="Cowrie_Clothes" EntityType="Self.Cowrie_Clothes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_ClothSizes" EntityType="Self.Cowrie_ClothSizes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_ClothStyles" EntityType="Self.Cowrie_ClothStyles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_ClothViews" EntityType="Self.Cowrie_ClothViews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Colours" EntityType="Self.Cowrie_Colours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Departments" EntityType="Self.Cowrie_Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Feeds" EntityType="Self.Cowrie_Feeds" Schema="dbo" store:Type="Tables" />
@@ -606,6 +642,7 @@
           <EntitySet Name="Cowrie_HomeAndGardens" EntityType="Self.Cowrie_HomeAndGardens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Hotels" EntityType="Self.Cowrie_Hotels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_HotelTypes" EntityType="Self.Cowrie_HotelTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cowrie_HotelViews" EntityType="Self.Cowrie_HotelViews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_MerchantCategories" EntityType="Self.Cowrie_MerchantCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_ProductImages" EntityType="Self.Cowrie_ProductImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Products" EntityType="Self.Cowrie_Products" Schema="dbo" store:Type="Tables" />
@@ -614,6 +651,7 @@
           <EntitySet Name="Cowrie_Sizes" EntityType="Self.Cowrie_Sizes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_Styles" EntityType="Self.Cowrie_Styles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cowrie_TabHotels" EntityType="Self.Cowrie_TabHotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpenUrlRewriter_UrlRule" EntityType="Self.OpenUrlRewriter_UrlRule" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cowrie_Boats_Cowrie_Products" Association="Self.FK_Cowrie_Boats_Cowrie_Products">
             <End Role="Cowrie_Products" EntitySet="Cowrie_Products" />
             <End Role="Cowrie_Boats" EntitySet="Cowrie_Boats" />
@@ -1026,6 +1064,9 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="TabHotels" EntitySet="TabHotels" />
           </AssociationSet>
+          <EntitySet Name="UrlRules" EntityType="SelectedHotelsModel.UrlRule" />
+          <EntitySet Name="HotelViews" EntityType="SelectedHotelsModel.HotelView" />
+          <EntitySet Name="ClothViews" EntityType="SelectedHotelsModel.ClothView" />
         </EntityContainer>
         <EntityType Name="MerchantCategory">
           <Key>
@@ -1220,6 +1261,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UrlRule">
+          <Key>
+            <PropertyRef Name="UrlRuleId" />
+          </Key>
+          <Property Name="UrlRuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RuleType" Type="Int32" Nullable="false" />
+          <Property Name="CultureCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortalId" Type="Int32" Nullable="false" />
+          <Property Name="TabId" Type="Int32" />
+          <Property Name="Parameters" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RemoveTab" Type="Boolean" />
+          <Property Name="RuleAction" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RedirectDestination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RedirectStatus" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HotelView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GeoName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HotelTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClothView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BrandName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1482,6 +1558,44 @@
                 <ScalarProperty Name="Distance" ColumnName="Distance" />
                 <ScalarProperty Name="HotelId" ColumnName="HotelId" />
                 <ScalarProperty Name="TabId" ColumnName="TabId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrlRules">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.UrlRule">
+              <MappingFragment StoreEntitySet="OpenUrlRewriter_UrlRule">
+                <ScalarProperty Name="RedirectStatus" ColumnName="RedirectStatus" />
+                <ScalarProperty Name="RedirectDestination" ColumnName="RedirectDestination" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="RuleAction" ColumnName="RuleAction" />
+                <ScalarProperty Name="RemoveTab" ColumnName="RemoveTab" />
+                <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+                <ScalarProperty Name="TabId" ColumnName="TabId" />
+                <ScalarProperty Name="PortalId" ColumnName="PortalId" />
+                <ScalarProperty Name="CultureCode" ColumnName="CultureCode" />
+                <ScalarProperty Name="RuleType" ColumnName="RuleType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="UrlRuleId" ColumnName="UrlRuleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelViews">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.HotelView">
+              <MappingFragment StoreEntitySet="Cowrie_HotelViews">
+                <ScalarProperty Name="HotelTypeName" ColumnName="HotelTypeName" />
+                <ScalarProperty Name="GeoName" ColumnName="GeoName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClothViews">
+            <EntityTypeMapping TypeName="SelectedHotelsModel.ClothView">
+              <MappingFragment StoreEntitySet="Cowrie_ClothViews">
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
